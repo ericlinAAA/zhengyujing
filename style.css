@@ -483,30 +483,30 @@ p.spacing {
    ========================================================================== */
 
 /* 關於我頂部橫幅設計 */
+/* 1. 關於我頂部橫幅設計 (輕柔雲朵感) */
 .about-hero {
-    background: linear-gradient(135deg, #eef5f3 0%, #6c9a8b 100%);
-    padding: 4rem 1rem;
+    background: linear-gradient(to bottom, #ffffff 0%, #f0f6f4 100%); /* 改為超淺的漸層 */
+    padding: 5rem 1rem 7rem 1rem; /* 上下留白拉大，增加呼吸感 */
     text-align: center;
-    color: #333333;
 }
 
 .about-hero h1 {
     font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-    color: #2c4a3e;
+    margin-bottom: 0.8rem;
+    color: #2c4a3e; /* 在極淺的背景上，深綠色文字會非常清晰且有質感 */
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 .about-hero p {
     font-size: 1.05rem;
-    color: #555555;
+    color: #666666; /* 副標題改為柔和的深灰色 */
 }
 
-/* 內容區塊整體間距與自適應寬度 */
+/* 2. 內容區塊整體間距與自適應寬度 */
 .about-details-section {
     max-width: 800px;
-    margin: -2rem auto 4rem auto; /* 讓第一個卡片稍微往上浮在橫幅上，更有層次感 */
+    margin: -4rem auto 4rem auto; /* 往上浮動的距離稍微拉大，層次感更好 */
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -648,5 +648,61 @@ p.spacing {
     }
     .detail-block {
         padding: 1.5rem;
+    }
+}
+/* --- 關於我頁面：形象照排版 --- */
+.profile-hero-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+/* 圖片外框設定：使用柔和的圓角矩形，保留白袍的專業感 */
+.profile-image-box img {
+    width: 220px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* 加上淡淡的陰影讓圖片立體 */
+    object-fit: cover;
+}
+
+/* 文字區塊設定：電腦版靠左對齊 */
+.profile-text-box {
+    text-align: left;
+}
+
+.profile-text-box h1 {
+    font-size: 2.4rem;
+    color: #2c4a3e;
+    margin-bottom: 0.5rem;
+}
+
+.profile-text-box p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 0.3rem;
+}
+
+.profile-text-box .subtitle {
+    color: #6c9a8b;
+    font-weight: 600;
+}
+
+/* 手機版 RWD 設定：變成上圖下文，文字置中 */
+@media (max-width: 768px) {
+    .profile-hero-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .profile-text-box {
+        text-align: center;
+    }
+    
+    .profile-image-box img {
+        width: 180px; /* 手機版圖片稍微縮小 */
     }
 }
