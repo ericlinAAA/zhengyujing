@@ -650,3 +650,59 @@ p.spacing {
         padding: 1.5rem;
     }
 }
+/* --- 關於我頁面：形象照排版 --- */
+.profile-hero-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+/* 圖片外框設定：使用柔和的圓角矩形，保留白袍的專業感 */
+.profile-image-box img {
+    width: 220px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* 加上淡淡的陰影讓圖片立體 */
+    object-fit: cover;
+}
+
+/* 文字區塊設定：電腦版靠左對齊 */
+.profile-text-box {
+    text-align: left;
+}
+
+.profile-text-box h1 {
+    font-size: 2.4rem;
+    color: #2c4a3e;
+    margin-bottom: 0.5rem;
+}
+
+.profile-text-box p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 0.3rem;
+}
+
+.profile-text-box .subtitle {
+    color: #6c9a8b;
+    font-weight: 600;
+}
+
+/* 手機版 RWD 設定：變成上圖下文，文字置中 */
+@media (max-width: 768px) {
+    .profile-hero-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .profile-text-box {
+        text-align: center;
+    }
+    
+    .profile-image-box img {
+        width: 180px; /* 手機版圖片稍微縮小 */
+    }
+}
