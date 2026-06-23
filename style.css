@@ -483,30 +483,30 @@ p.spacing {
    ========================================================================== */
 
 /* 關於我頂部橫幅設計 */
+/* 1. 關於我頂部橫幅設計 (輕柔雲朵感) */
 .about-hero {
-    background: linear-gradient(135deg, #eef5f3 0%, #6c9a8b 100%);
-    padding: 4rem 1rem;
+    background: linear-gradient(to bottom, #ffffff 0%, #f0f6f4 100%); /* 改為超淺的漸層 */
+    padding: 5rem 1rem 7rem 1rem; /* 上下留白拉大，增加呼吸感 */
     text-align: center;
-    color: #333333;
 }
 
 .about-hero h1 {
     font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-    color: #2c4a3e;
+    margin-bottom: 0.8rem;
+    color: #2c4a3e; /* 在極淺的背景上，深綠色文字會非常清晰且有質感 */
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 .about-hero p {
     font-size: 1.05rem;
-    color: #555555;
+    color: #666666; /* 副標題改為柔和的深灰色 */
 }
 
-/* 內容區塊整體間距與自適應寬度 */
+/* 2. 內容區塊整體間距與自適應寬度 */
 .about-details-section {
     max-width: 800px;
-    margin: -2rem auto 4rem auto; /* 讓第一個卡片稍微往上浮在橫幅上，更有層次感 */
+    margin: -4rem auto 4rem auto; /* 往上浮動的距離稍微拉大，層次感更好 */
     display: flex;
     flex-direction: column;
     gap: 2rem;
