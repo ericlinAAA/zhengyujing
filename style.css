@@ -478,3 +478,175 @@ p.spacing {
         text-align: center;
     }
 }
+/* ==========================================================================
+   關於我全新頁面 (about.html) 專屬樣式
+   ========================================================================== */
+
+/* 關於我頂部橫幅設計 */
+.about-hero {
+    background: linear-gradient(135deg, #eef5f3 0%, #6c9a8b 100%);
+    padding: 4rem 1rem;
+    text-align: center;
+    color: #333333;
+}
+
+.about-hero h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: #2c4a3e;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.about-hero p {
+    font-size: 1.05rem;
+    color: #555555;
+}
+
+/* 內容區塊整體間距與自適應寬度 */
+.about-details-section {
+    max-width: 800px;
+    margin: -2rem auto 4rem auto; /* 讓第一個卡片稍微往上浮在橫幅上，更有層次感 */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* 獨立內容卡片外觀 */
+.detail-block {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    border-top: 4px solid #6c9a8b;
+}
+
+/* 卡片內的小標題 */
+.block-title {
+    font-size: 1.3rem;
+    color: #333333;
+    margin-bottom: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border-bottom: 2px solid #f5f5f5;
+    padding-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.block-title i {
+    color: #6c9a8b;
+    font-size: 1.2rem;
+}
+
+/* 1. 經歷：時間軸樣式 */
+.timeline-list {
+    list-style: none;
+    padding-left: 1.2rem;
+    border-left: 2px solid #e0e6e4;
+    margin: 0;
+}
+
+.timeline-list li {
+    position: relative;
+    padding-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    color: #555555;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+}
+
+.timeline-list li::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 0.4rem;
+    width: 12px;
+    height: 12px;
+    background: #6c9a8b;
+    border-radius: 50%;
+    transform: translateX(-1px);
+    box-shadow: 0 0 0 3px rgba(108, 154, 139, 0.2);
+}
+
+.timeline-list li:last-child {
+    padding-bottom: 0;
+}
+
+/* 2. 專長：響應式雙排/單排網格卡片 */
+.specialties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem;
+}
+
+.specialty-item {
+    background: #f8fbfb;
+    padding: 1.2rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #444444;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border: 1px solid #eef5f3;
+}
+
+.specialty-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(108, 154, 139, 0.1);
+    border-color: #6c9a8b;
+}
+
+.specialty-item i {
+    color: #e5989b; /* 柔和暖色調 */
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+}
+
+/* 3. 證照：橫線分隔榮譽清單 */
+.certificate-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.certificate-list li {
+    padding: 1rem 0;
+    border-bottom: 1px dashed #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #444444;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+}
+
+.certificate-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.certificate-list li i {
+    color: #f4a261; /* 金黃色獎章感 */
+    font-size: 1.2rem;
+}
+
+/* 手機版 RWD 細微調整 */
+@media (max-width: 768px) {
+    .about-hero {
+        padding: 3rem 1rem;
+    }
+    .about-details-section {
+        margin-top: 0; /* 手機版不漂浮，乖乖排好 */
+    }
+    .detail-block {
+        padding: 1.5rem;
+    }
+}
