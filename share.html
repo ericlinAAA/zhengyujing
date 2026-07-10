@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個案分享與回饋 | 鄭鈺靜∞物理治療師</title>
+    
+    <link rel="canonical" href="https://zhengyujing.ericlinaaa.workers.dev/share.html" />
+    <meta name="google-site-verification" content="C3dIUDh8sv6it3azpjgATWbYQd7mKVuW0yYJMQUigj4" />
+    
+    <meta name="description" content="看看其他個案在鄭鈺靜物理治療師這裡的治療經驗與真實回饋。我們重視每一次的動作評估與治療成效。">
+    <meta name="keywords" content="物理治療推薦, 個案分享, 治療心得, 鄭鈺靜, 物理治療評價">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/favicon.ico">
+</head>
+<body class="share-page">
+
+    <header>
+        <div class="logo"><a href="index.html">鄭鈺靜<span>∞</span>物理治療師</a></div>
+        <nav>
+            <ul>
+                <li><a href="booking-guide.html">預約必讀</a></li>
+                <li><a href="#">衛教筆記</a></li>
+                <li><a href="share.html" class="active">個案分享</a></li>
+                <li><a href="about.html">關於我</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="#" class="nav-cta">立即預約</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="share-hero">
+        <div class="hero-content">
+            <h1>個案分享與回饋</h1>
+            <div class="hero-divider"></div>
+            <p>身體會記錄生活留下的痕跡，而我們紀錄您的改變。<br>感謝每一位願意分享真實歷程的您。</p>
+        </div>
+    </main>
+
+    <section id="reviews-section" class="patient-testimonials">
+        <div class="container">
+            <div id="reviews-display" class="testimonial-grid">
+                <div class="loading-state">
+                    <i class="fa-solid fa-spinner fa-spin"></i> 載入真實回饋中...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="review-form-section">
+        <div class="container">
+            <div class="review-form-card">
+                <div class="form-header">
+                    <h2><i class="fa-solid fa-pen-nib"></i> 留下您的回饋</h2>
+                    <p>感謝您與我一起合作！您的每一個字，都是我們進步與幫助其他個案的重要動力。</p>
+                </div>
+                
+                <form id="review-form" class="review-form">
+                    <div class="form-group">
+                        <label for="rating">您今天的體驗評分 <span class="required-star">*</span></label>
+                        <select id="rating" required>
+                            <option value="" disabled selected>請選擇您的評分</option>
+                            <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐ (非常滿意)</option>
+                            <option value="⭐⭐⭐⭐">⭐⭐⭐⭐ (滿意)</option>
+                            <option value="⭐⭐⭐">⭐⭐⭐ (普通)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">想對治療師說的話或心得 <span class="required-star">*</span></label>
+                        <textarea id="message" rows="5" placeholder="歡迎分享您的治療經驗，例如：當初遇到什麼問題、物理治療師如何協助您找到原因、治療與運動指導帶來哪些改變，以及目前恢復的狀況…" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nickname">您的稱呼 (可填寫暱稱) <span class="required-star">*</span></label>
+                        <input type="text" id="nickname" placeholder="例如：跑者小林、上班族Amy、工程師Kevin..." required>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="submit-button">送出您的專屬評價 <i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>聯絡我</h4>
+                <p>📍 新北市新莊區立廷里中平路371號1樓</p>
+                <p>📞 02 6605 7272</p>
+            </div>
+            <div class="footer-section">
+                <h4>營業資訊</h4>
+                <p>星期一至星期六</p>
+                <p>早診：09:00 - 12:30</p>
+                <p>午診：13:30 - 17:00</p>
+                <p>晚診：18:00 - 21:30</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 鄭鈺靜∞物理治療師 All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDkNhYaOID8wiYi1GXGDpfLnPAPDzD3S1Y",
+            authDomain: "test-47cca.firebaseapp.com",
+            projectId: "test-47cca",
+            storageBucket: "test-47cca.firebasestorage.app",
+            messagingSenderId: "116319783192",
+            appId: "1:116319783192:web:112bd38e0367cdec93f66d",
+            measurementId: "G-PBKPJG3YBD"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const reviewForm = document.getElementById('review-form');
+        const reviewsDisplay = document.getElementById('reviews-display');
+        const submitBtn = document.getElementById('submit-btn');
+
+        // 表單提交與驗證處理
+        reviewForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); 
+            
+            const ratingVal = document.getElementById('rating').value;
+            const messageVal = document.getElementById('message').value.trim();
+            const nicknameVal = document.getElementById('nickname').value.trim();
+
+            if(!ratingVal || !messageVal || !nicknameVal) {
+                alert('請填寫所有必填欄位喔！');
+                return;
+            }
+
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 送出中...';
+            submitBtn.disabled = true;
+
+            try {
+                await addDoc(collection(db, "reviews"), {
+                    rating: ratingVal,
+                    message: messageVal,
+                    nickname: nicknameVal,
+                    createdAt: serverTimestamp()
+                });
+                
+                reviewForm.reset();
+                window.location.href = 'success.html';
+                
+            } catch (error) {
+                console.error("寫入錯誤: ", error);
+                alert('發生錯誤，請稍後再試。');
+                submitBtn.innerHTML = '送出您的專屬評價 <i class="fa-solid fa-paper-plane"></i>';
+                submitBtn.disabled = false;
+            }
+        });
+
+        const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+
+        onSnapshot(q, (querySnapshot) => {
+            reviewsDisplay.innerHTML = ''; 
+            
+            if (querySnapshot.empty) {
+                reviewsDisplay.innerHTML = '<div class="loading-state">目前還沒有留言，來搶頭香吧！</div>';
+                return;
+            }
+
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                const card = document.createElement('div');
+                card.className = 'testimonial-card';
+                // 加上引號圖示與優化排版
+                card.innerHTML = `
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <div class="stars">${data.rating}</div>
+                    <p class="comment">${data.message}</p>
+                    <p class="author">— ${data.nickname}</p>
+                `;
+                reviewsDisplay.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>
