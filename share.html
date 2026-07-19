@@ -133,7 +133,7 @@
             <button id="custom-alert-close" class="modal-btn">我知道了</button>
         </div>
     </div>
-    <!-- Firebase 資料庫連線腳本 (完整乾淨版) -->
+    <!-- Firebase 資料庫連線腳本 (加入客製化 Alert) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -155,31 +155,49 @@
         const reviewsDisplay = document.getElementById('reviews-display');
         const submitBtn = document.getElementById('submit-btn');
 
-        // 表單提交與驗證處理 (全場唯一的監聽器)
+        // --- 自訂 Alert 控制邏輯 ---
+        const customAlert = document.getElementById('custom-alert');
+        const customAlertMessage = document.getElementById('custom-alert-message');
+        const customAlertClose = document.getElementById('custom-alert-close');
+        let focusElementAfterClose = null; // 紀錄關閉後要將游標停在哪個欄位
+
+        function showCustomAlert(message, focusElementId = null) {
+            customAlertMessage.textContent = message;
+            customAlert.classList.add('show');
+            focusElementAfterClose = focusElementId;
+        }
+
+        // 點擊「我知道了」關閉彈窗
+        customAlertClose.addEventListener('click', () => {
+            customAlert.classList.remove('show');
+            if (focusElementAfterClose) {
+                document.getElementById(focusElementAfterClose).focus();
+            }
+        });
+        // ------------------------
+
+        // 表單提交與驗證處理
         reviewForm.addEventListener('submit', async (e) => {
             e.preventDefault(); 
             
-            // 抓取包含 Email 在內的所有欄位值
             const ratingVal = document.getElementById('rating').value;
             const messageVal = document.getElementById('message').value.trim();
             const nicknameVal = document.getElementById('nickname').value.trim();
             const emailVal = document.getElementById('email').value.trim();
 
-            // 1. 第一關：驗證是否漏填
+            // 1. 第一關：驗證是否漏填 (使用自訂 Alert)
             if(!ratingVal || !messageVal || !nicknameVal || !emailVal) {
-                alert('請填寫所有必填欄位喔！');
-                return; // 終止執行
+                showCustomAlert('請填寫所有必填欄位喔！');
+                return; 
             }
 
-            // 2. 第二關：嚴謹的 Email 格式驗證
+            // 2. 第二關：嚴謹的 Email 格式驗證 (使用自訂 Alert，關閉後游標跳回 email 欄位)
             const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             if (!emailRegex.test(emailVal)) {
-                alert('電子信箱格式似乎不太正確，請檢查是否有漏打 @ 或網域後綴 (如 .com) 喔！');
-                document.getElementById('email').focus(); 
-                return; // 終止執行，絕對不會送到資料庫
+                showCustomAlert('電子信箱格式似乎不太正確，請檢查是否有漏打 @ 或網域後綴 (如 .com) 喔！', 'email');
+                return; 
             }
 
-            // 驗證全數通過，開始安全送出
             submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 送出中...';
             submitBtn.disabled = true;
 
@@ -188,7 +206,7 @@
                     rating: ratingVal,
                     message: messageVal,
                     nickname: nicknameVal,
-                    email: emailVal, // Email 安全建檔
+                    email: emailVal, 
                     createdAt: serverTimestamp()
                 });
                 
@@ -197,13 +215,13 @@
                 
             } catch (error) {
                 console.error("寫入錯誤: ", error);
-                alert('發生錯誤，請稍後再試。');
+                showCustomAlert('發生錯誤，資料無法送出，請稍後再試。');
                 submitBtn.innerHTML = '送出您的專屬評價 <i class="fa-solid fa-paper-plane"></i>';
                 submitBtn.disabled = false;
             }
         });
 
-        // 讀取並顯示留言 (排除 Email 欄位保護隱私)
+        // 讀取並顯示留言
         const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
 
         onSnapshot(q, (querySnapshot) => {
