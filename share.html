@@ -122,7 +122,17 @@
             <p>&copy; 2026 鄭鈺靜∞物理治療師 All Rights Reserved.</p>
         </div>
     </footer>
-
+<!-- 自訂質感提示對話框 (預設隱藏) -->
+    <div id="custom-alert" class="custom-modal-overlay">
+        <div class="custom-modal">
+            <div class="modal-icon">
+                <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+            <h3 class="modal-title">提醒您</h3>
+            <p id="custom-alert-message" class="modal-message">這裡會顯示提示訊息</p>
+            <button id="custom-alert-close" class="modal-btn">我知道了</button>
+        </div>
+    </div>
     <!-- Firebase 資料庫連線腳本 (完整乾淨版) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
