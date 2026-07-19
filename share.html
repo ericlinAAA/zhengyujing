@@ -123,6 +123,7 @@
         </div>
     </footer>
 
+    <!-- Firebase 資料庫連線腳本 (完整乾淨版) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -144,19 +145,31 @@
         const reviewsDisplay = document.getElementById('reviews-display');
         const submitBtn = document.getElementById('submit-btn');
 
-        // 表單提交與驗證處理
+        // 表單提交與驗證處理 (全場唯一的監聽器)
         reviewForm.addEventListener('submit', async (e) => {
             e.preventDefault(); 
             
+            // 抓取包含 Email 在內的所有欄位值
             const ratingVal = document.getElementById('rating').value;
             const messageVal = document.getElementById('message').value.trim();
             const nicknameVal = document.getElementById('nickname').value.trim();
+            const emailVal = document.getElementById('email').value.trim();
 
-            if(!ratingVal || !messageVal || !nicknameVal) {
+            // 1. 第一關：驗證是否漏填
+            if(!ratingVal || !messageVal || !nicknameVal || !emailVal) {
                 alert('請填寫所有必填欄位喔！');
-                return;
+                return; // 終止執行
             }
 
+            // 2. 第二關：嚴謹的 Email 格式驗證
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailRegex.test(emailVal)) {
+                alert('電子信箱格式似乎不太正確，請檢查是否有漏打 @ 或網域後綴 (如 .com) 喔！');
+                document.getElementById('email').focus(); 
+                return; // 終止執行，絕對不會送到資料庫
+            }
+
+            // 驗證全數通過，開始安全送出
             submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 送出中...';
             submitBtn.disabled = true;
 
@@ -165,6 +178,7 @@
                     rating: ratingVal,
                     message: messageVal,
                     nickname: nicknameVal,
+                    email: emailVal, // Email 安全建檔
                     createdAt: serverTimestamp()
                 });
                 
@@ -179,6 +193,7 @@
             }
         });
 
+        // 讀取並顯示留言 (排除 Email 欄位保護隱私)
         const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
 
         onSnapshot(q, (querySnapshot) => {
@@ -193,7 +208,6 @@
                 const data = doc.data();
                 const card = document.createElement('div');
                 card.className = 'testimonial-card';
-                // 加上引號圖示與優化排版
                 card.innerHTML = `
                     <i class="fa-solid fa-quote-left quote-icon"></i>
                     <div class="stars">${data.rating}</div>
@@ -202,55 +216,6 @@
                 `;
                 reviewsDisplay.appendChild(card);
             });
-        });
-		// 表單提交與驗證處理
-        reviewForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); 
-            
-            // 抓取包含 Email 在內的所有欄位值
-            const ratingVal = document.getElementById('rating').value;
-            const messageVal = document.getElementById('message').value.trim();
-            const nicknameVal = document.getElementById('nickname').value.trim();
-            const emailVal = document.getElementById('email').value.trim();
-
-            // 1. 第一關：驗證是否漏填必填欄位
-            if(!ratingVal || !messageVal || !nicknameVal || !emailVal) {
-                alert('請填寫所有必填欄位喔！');
-                return;
-            }
-
-            // 2. 第二關：嚴謹的 Email 正規表達式 (Regex) 驗證
-            // 這個規則會檢查：必須有 @，必須有 .，且後綴至少要兩個英文字母 (如 .tw, .com)
-            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            if (!emailRegex.test(emailVal)) {
-                alert('電子信箱格式似乎不太正確，請檢查是否有漏打 @ 或網域後綴 (如 .com) 喔！');
-                // 將焦點移回 Email 欄位讓使用者修改
-                document.getElementById('email').focus(); 
-                return;
-            }
-
-            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 送出中...';
-            submitBtn.disabled = true;
-
-            try {
-                // 將包含 Email 的資料一起打包寫入 Firebase
-                await addDoc(collection(db, "reviews"), {
-                    rating: ratingVal,
-                    message: messageVal,
-                    nickname: nicknameVal,
-                    email: emailVal,  // 儲存 Email 到資料庫
-                    createdAt: serverTimestamp()
-                });
-                
-                reviewForm.reset();
-                window.location.href = 'success.html';
-                
-            } catch (error) {
-                console.error("寫入錯誤: ", error);
-                alert('發生錯誤，請稍後再試。');
-                submitBtn.innerHTML = '送出您的專屬評價 <i class="fa-solid fa-paper-plane"></i>';
-                submitBtn.disabled = false;
-            }
         });
     </script>
 </body>
