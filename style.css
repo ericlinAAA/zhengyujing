@@ -483,30 +483,30 @@ p.spacing {
    ========================================================================== */
 
 /* 關於我頂部橫幅設計 */
+/* 1. 關於我頂部橫幅設計 (輕柔雲朵感) */
 .about-hero {
-    background: linear-gradient(135deg, #eef5f3 0%, #6c9a8b 100%);
-    padding: 4rem 1rem;
+    background: linear-gradient(to bottom, #ffffff 0%, #f0f6f4 100%); /* 改為超淺的漸層 */
+    padding: 5rem 1rem 7rem 1rem; /* 上下留白拉大，增加呼吸感 */
     text-align: center;
-    color: #333333;
 }
 
 .about-hero h1 {
     font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-    color: #2c4a3e;
+    margin-bottom: 0.8rem;
+    color: #2c4a3e; /* 在極淺的背景上，深綠色文字會非常清晰且有質感 */
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 .about-hero p {
     font-size: 1.05rem;
-    color: #555555;
+    color: #666666; /* 副標題改為柔和的深灰色 */
 }
 
-/* 內容區塊整體間距與自適應寬度 */
+/* 2. 內容區塊整體間距與自適應寬度 */
 .about-details-section {
     max-width: 800px;
-    margin: -2rem auto 4rem auto; /* 讓第一個卡片稍微往上浮在橫幅上，更有層次感 */
+    margin: -4rem auto 4rem auto; /* 往上浮動的距離稍微拉大，層次感更好 */
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -648,5 +648,267 @@ p.spacing {
     }
     .detail-block {
         padding: 1.5rem;
+    }
+}
+/* --- 關於我頁面：形象照排版 --- */
+.profile-hero-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+/* 圖片外框設定：使用柔和的圓角矩形，保留白袍的專業感 */
+.profile-image-box img {
+    width: 220px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* 加上淡淡的陰影讓圖片立體 */
+    object-fit: cover;
+}
+
+/* 文字區塊設定：電腦版靠左對齊 */
+.profile-text-box {
+    text-align: left;
+}
+
+.profile-text-box h1 {
+    font-size: 2.4rem;
+    color: #2c4a3e;
+    margin-bottom: 0.5rem;
+}
+
+.profile-text-box p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 0.3rem;
+}
+
+.profile-text-box .subtitle {
+    color: #6c9a8b;
+    font-weight: 600;
+}
+
+/* 手機版 RWD 設定：變成上圖下文，文字置中 */
+@media (max-width: 768px) {
+    .profile-hero-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .profile-text-box {
+        text-align: center;
+    }
+    
+    .profile-image-box img {
+        width: 180px; /* 手機版圖片稍微縮小 */
+    }
+}
+
+/* ==========================================================================
+   個案分享頁面 (share.html) 專屬樣式
+   ========================================================================== */
+
+/* 1. 質感漸層橫幅 */
+.share-hero {
+    background: linear-gradient(135deg, #f5f9f7 0%, #e2ece8 100%);
+    padding: 5rem 1rem 4rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid #dce8e3;
+}
+
+.share-hero h1 {
+    font-size: 2.6rem;
+    color: #2c4a3e;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.share-hero .hero-divider {
+    width: 50px;
+    height: 4px;
+    background-color: #6c9a8b;
+    border-radius: 2px;
+    margin: 0 auto 1.5rem auto;
+}
+
+.share-hero p {
+    font-size: 1.1rem;
+    color: #555555;
+    line-height: 1.8;
+}
+
+/* 2. 留言展示區塊優化 */
+.patient-testimonials {
+    padding: 4rem 1rem 2rem 1rem;
+    background-color: #ffffff;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.loading-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #888;
+    font-size: 1.1rem;
+    padding: 3rem 0;
+}
+
+/* 個別留言卡片設計 */
+.testimonial-card {
+    background: #ffffff;
+    border: 1px solid #edf2f0;
+    border-radius: 12px;
+    padding: 2.5rem 2rem 2rem 2rem;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(108, 154, 139, 0.1);
+    border-color: #6c9a8b;
+}
+
+/* 左上角引號裝飾 */
+.quote-icon {
+    position: absolute;
+    top: 1.2rem;
+    left: 1.5rem;
+    font-size: 1.8rem;
+    color: #e2ece8;
+    z-index: 0;
+}
+
+.testimonial-card .stars {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-card .comment {
+    color: #444;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-card .author {
+    color: #6c9a8b;
+    font-weight: 600;
+    text-align: right;
+    font-size: 0.95rem;
+}
+
+/* 3. 表單懸浮卡片區塊 */
+.review-form-section {
+    padding: 3rem 1rem 6rem 1rem;
+    background-color: #ffffff;
+}
+
+.review-form-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fcfdfd;
+    border: 1px solid #e2ece8;
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px dashed #dce8e3;
+    padding-bottom: 1.5rem;
+}
+
+.form-header h2 {
+    color: #2c4a3e;
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.form-header p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.required-star {
+    color: #e63946;
+    font-weight: bold;
+    margin-left: 4px;
+}
+
+.review-form label {
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.review-form input,
+.review-form select,
+.review-form textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #dce8e3;
+    border-radius: 8px;
+    background-color: #ffffff;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-form input:focus,
+.review-form select:focus,
+.review-form textarea:focus {
+    outline: none;
+    border-color: #6c9a8b;
+    box-shadow: 0 0 0 3px rgba(108, 154, 139, 0.15);
+}
+
+.submit-button {
+    width: 100%;
+    padding: 1.2rem;
+    background-color: #6c9a8b;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.submit-button:hover {
+    background-color: #568072;
+    transform: translateY(-2px);
+}
+
+/* 手機版 RWD 調整 */
+@media (max-width: 768px) {
+    .review-form-card {
+        padding: 2rem 1.5rem;
+    }
+    .share-hero {
+        padding: 4rem 1rem 3rem 1rem;
     }
 }

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 標題很重要：要加上服務核心關鍵字 -->
     <title>鄭鈺靜∞物理治療師 | 專業動作評估與問題改善</title>
-    <link rel="canonical" href="https://zhengyujing.ericlinaaa.workers.dev/" />
     <meta name="google-site-verification" content="C3dIUDh8sv6it3azpjgATWbYQd7mKVuW0yYJMQUigj4" />
     
     <!-- 給 Google 搜尋結果顯示的簡短介紹 -->
@@ -18,6 +17,7 @@
 	
 	<!-- 網站的 Favicon 小圖示 (.ico 版本) -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+	<meta property="og:image" content="https://zhengyujing.ericlinaaa.workers.dev/images/img.jpg">
     
     <!-- 蘋果手機專用圖示 (通常還是建議用 png，但如果你只有 ico 也可以這樣寫) -->
     <link rel="apple-touch-icon" href="images/favicon.ico">
@@ -56,14 +56,13 @@
         <div class="logo"><a href="index.html">鄭鈺靜<span>∞</span>物理治療師</a></div>
         <nav>
             <ul>
-                <li><a href="booking-guide.html">預約必讀</a></li>
-                <li><a href="#">衛教筆記</a></li>
-                <li><a href="#">個案分享</a></li>
-                <li><a href="about.html">關於我</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <!-- 立即預約特別加上了 class="nav-cta" 來做特殊按鈕樣式 -->
-                <li><a href="#" class="nav-cta">立即預約</a></li>
-            </ul>
+				<li><a href="booking-guide.html">預約必讀</a></li>
+				<li><a href="#">衛教筆記</a></li>
+				<li><a href="share.html">個案分享</a></li>
+				<li><a href="about.html">關於我</a></li>
+				<li><a href="faq.html">FAQ</a></li>
+				<li><a href="#" class="nav-cta">立即預約</a></li>
+			</ul>
         </nav>
     </header>
 
@@ -126,57 +125,6 @@
                     <p>不知道到底哪裡有問題、站著坐著都不太對稱、檢查正常但還是不舒服、不知道該從哪裡開始改善</p>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <!-- 評價收集區塊 (Firebase 版本) -->
-    <section class="review-section">
-        <div class="container review-container">
-            <h2>留下您的回饋</h2>
-            <p>感謝您與我一起合作！歡迎留下您的真實感受。</p>
-            
-            <form id="review-form" class="review-form">
-                <div class="form-group">
-                    <label for="rating">您今天的體驗評分：</label>
-                    <select id="rating" required>
-                        <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐ (非常滿意)</option>
-                        <option value="⭐⭐⭐⭐">⭐⭐⭐⭐ (滿意)</option>
-                        <option value="⭐⭐⭐">⭐⭐⭐ (普通)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">想對治療師說的話或心得：</label>
-                    <textarea id="message" rows="4" placeholder="例如：原本肩膀舉不起來..." required></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="nickname">您的稱呼 (可填寫暱稱)：</label>
-                    <input type="text" id="nickname" placeholder="例如：陳先生 / 王小姐" required>
-                </div>
-
-                <button type="submit" id="submit-btn" class="submit-button">送出評價</button>
-            </form>
-        </div>
-    </section>
-    
-    <!-- 網站即時留言展示區塊 -->
-    <section id="reviews-section" class="patient-testimonials">
-        <div class="container">
-            <h2 class="section-title">個案分享與回饋</h2>
-            <div id="reviews-display" class="testimonial-grid">
-                <p style="text-align:center; width:100%; color:#999;">載入留言中...</p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Google 真實評論區塊 (Elfsight 第三方套件) -->
-    <section class="google-reviews-section" style="padding: 80px 20px; background-color: #faf9f6;">
-        <div class="container">
-            <h2 class="section-title" style="text-align: center; color: #5c7e73; font-size: 2rem; margin-bottom: 40px; font-weight: bold;">來自地圖的真實好評</h2>
-            
-            <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-            <div class="elfsight-app-14ce9036-90a9-4e7a-8402-e06a9f96a1f3"></div>
         </div>
     </section>
     
